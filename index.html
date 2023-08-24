@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>빙그레</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/index.css">
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="lib/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+
+            /* .header search */
+            $('.menu_search img').click(function () {
+
+                /*   $('.search_box').css({
+                      'width' : '220px',
+                      'opacity' : '1'
+                  }) */
+                $('.search_box').toggleClass('on')
+            })
+
+            /* main_visual swiper */
+            var swiper = new Swiper(".mySwiper", {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                loop: true,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+
+            /* .cont01 swiper */
+            var swiper = new Swiper(".yourSwiper", {
+                slidesPerView: 4,
+                spaceBetween: 30,
+                scrollbar: {
+                    el: ".swiper-scrollbar",
+                },
+            });
+
+            /* .brand_shop swiper */
+            var swiper = new Swiper(".ourSwiper", {
+                slidesPerView: 6,
+                spaceBetween: 30,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+            });
+
+            /* .event swiper */
+            var swiper = new Swiper(".hisSwiper", {
+                spaceBetween: 30,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+
+            /* 🍔 */
+            let menuIconWrap = $('.hamburger_icon');
+            let menuIcon = $('.hamburger_icon span');
+            menuIconWrap.click(function () {
+                $(this).toggleClass('on');
+            })/* menuIconWrap.click() */
+
+            $('a').click(function () {
+                return false
+            })/* .a.click() */
+
+            let menuWidth = $('.menu ul li a').outerWidth()
+
+            $('.bar').css({
+                'width': menuWidth,
+                'left': '20px'
+            })
+
+            $('.menu ul li a').mouseenter(function () {
+
+                let move = $(this).position().left
+                let thisWidth = $(this).outerWidth()
+
+                console.log(move)
+                console.log(thisWidth)
+                $('.bar').stop().animate({
+                    'left': move,
+                    'width': thisWidth
+                })
+
+                //.menu_open을 클릭을 했을 때 실행
+                //nav가 slideDown()
+
+            })//.menu ul li.mouseenter()
+
+            $('.hamburger_icon').click(function () {
+
+                $('.nav').slideToggle().css({
+                    'display': 'block'
+                })
+            })/* .hamburger_icon.click() */
+
+            console.log($('header .inner').offset().top)
+            let headerTop = ($('header .inner').offset().top)
+            let cont01Top = ($('.cont01').offset().top)
+            console.log(cont01Top)
+            /* 헤더 픽스*/
+            $(window).scroll(function () {
+                /* if (headerTop < $(window).scrollTop()) {
+                    $('header .inner').addClass('on')
+                    
+                } else {
+                    $('header .inner').removeClass('on')
+                }
+                 */
+                if (cont01Top < $(window).scrollTop()) {
+                    $('.top').fadeIn().css({
+                        'display': 'block'
+                    })
+                } else {
+                    $('.top').fadeOut()
+                }
+            })//window.scroll()
+            
+            /* 버튼 누르면 헤더로 가기 */
+            $('.top').click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 700)
+            })//.top.click()
+
+        })//jquery end
+    </script>
+</head>
+
+<body>
+    <header>
+        <div>
+            <div class="logo">
+                <a href="#">
+                    <img src="img/logo-pc.png" alt="">
+                </a>
+            </div><!-- .logo end -->
+        </div>
+        <div class="inner">
+            <div>
+                <div class="hamburger_icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div><!-- .hamburger_icon end -->
+                <div class="menu">
+                    <ul>
+                        <li><a href="#">브랜드스토리</a></li>
+                        <li><a href="#">베스트</a></li>
+                        <li><a href="#">전체 상품</a></li>
+                        <li><a href="#">리뷰</a></li>
+                        <li><a href="#">이벤트</a></li>
+                    </ul>
+                    <div class="bar">
+                        <span>메뉴바</span>
+                    </div><!-- .bar end -->
+                </div><!-- .menu end -->
+            </div>
+
+            <div class="nav_icon">
+                <div class="search_box">
+                    <input type="text" placeholder="제품명을 입력해주세요.">
+                    <button>검색</button>
+                </div><!-- .search_box end -->
+
+                <div class="menu_search">
+                    <a href="#">
+                        <img src="img/ico_head_search_000.svg" alt="">
+                    </a>
+                </div><!-- .menu_search end -->
+
+                <div class="menu_user">
+                    <a href="#">
+                        <img src="img/ico_head_user_000.svg" alt="">
+                    </a>
+                </div><!-- .menu_user end -->
+
+                <div class="menu_basket">
+                    <a href="#">
+                        <img src="img/ico_head_basket_000.svg" alt="">
+                    </a>
+                </div><!-- .menu_basket end -->
+
+            </div><!-- .nav_icon end -->
+        </div><!-- .inner end -->
+
+        <div class="nav">
+            <div class="menu_close">
+                <a href="#"><img src="img/close.png" alt=""></a>
+            </div><!-- .menu_close end -->
+            <div class="menu_box">
+                <div class="nav_wrap">
+                    <div class="categorycont">
+                        <ul class="categorylist">
+                            <li>
+                                <span><a href="#">브랜드스토리</a></span>
+                            </li>
+                            <li>
+                                <span><a href="#">베스트</a></span>
+                            </li>
+                            <li>
+                                <span><a href="#">전체 상품</a></span>
+                                <ul class="list_sub">
+                                    <li><a href="#">아이스크림</a></li>
+                                    <li><a href="#">우유/치즈</a></li>
+                                    <li><a href="#">발효유</a></li>
+                                    <li><a href="#">커피</a></li>
+                                    <li><a href="#">주스</a></li>
+                                    <li><a href="#">음료</a></li>
+                                    <li><a href="#">스낵/디저트</a></li>
+                                    <li><a href="#">건강기능식품</a></li>
+                                </ul><!-- .list_sub end -->
+                            </li>
+                            <li>
+                                <span><a href="#">리뷰</a></span>
+                            </li>
+                            <li>
+                                <span><a href="#">이벤트</a></span>
+                            </li>
+                        </ul><!-- .categorylist end -->
+                    </div><!-- .categorycont end -->
+
+                    <div class="boardcont">
+                        <div class="boardlist">
+                            <span><a href="#">커뮤니티</a></span>
+                            <ul>
+                                <li><a href="#">공지사항</a></li>
+                                <li><a href="#">상품 사용후기</a></li>
+                                <li><a href="#">상품 Q&A</a></li>
+                                <li><a href="#">이벤트</a></li>
+                                <li><a href="#">자주묻는 질문</a></li>
+                            </ul>
+                        </div><!-- .boardlist end -->
+
+                        <div class="memberlist">
+                            <span><a href="#">마이페이지</a></span>
+                            <ul>
+                                <li><a href="#">회원정보 수정</a></li>
+                                <li><a href="#">비밀번호 변경</a></li>
+                                <li><a href="#">적립금</a></li>
+                                <li><a href="#">관심상품</a></li>
+                                <li><a href="#">최근 본 상품</a></li>
+                                <li><a href="#">배송 주소록 관리</a></li>
+                            </ul>
+                        </div><!-- .memberlist end -->
+
+                        <div class="loginlist">
+                            <ul>
+                                <span><a href="#">주문조회</a></span>
+                                <span><a href="#">로그인</a></span>
+                                <span><a href="#">회원가입</a></span>
+                            </ul>
+                        </div><!-- .boardlist end -->
+                    </div><!-- .boardcont end -->
+                </div><!-- .nav_wrap -->
+            </div><!-- .menu_box end -->
+        </div><!-- .nav end -->
+
+    </header>
+
+    <section class="main_visual">
+        <!-- Swiper -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="img/main1.png" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="img/main2.png" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="img/main3.png" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="img/main4.png" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="img/main5.png" alt="">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="img/main6.png" alt="">
+                    </a>
+                </div>
+            </div><!-- .swiper-wrapper end -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div><!-- .swiper .mySwiper -->
+    </section><!-- .main_visual end -->
+
+    <section class="item_list">
+        <div class="inner">
+            <ul>
+                <li>
+                    <a href="#"><img src="img/list1.png" alt=""></a>
+                    <span>아이스크림</span>
+                </li>
+                <li>
+                    <a href="#"><img src="img/list2.png" alt=""></a>
+                    <span>우유/치즈</span>
+
+                </li>
+                <li>
+                    <a href="#"><img src="img/list3.png" alt=""></a>
+                    <span>발효유</span>
+
+                </li>
+                <li>
+                    <a href="#"><img src="img/list4.png" alt=""></a>
+                    <span>커피</span>
+
+                </li>
+                <li>
+                    <a href="#"><img src="img/list5.png" alt=""></a>
+                    <span>주스</span>
+
+                </li>
+                <li>
+                    <a href="#"><img src="img/list6.png" alt=""></a>
+                    <span>음료</span>
+
+                </li>
+                <li>
+                    <a href="#"><img src="img/list7.png" alt=""></a>
+                    <span>스낵/디저트</span>
+
+                </li>
+                <li>
+                    <a href="#"><img src="img/list8.png" alt=""></a>
+                    <span>건강기능식품</span>
+
+                </li>
+            </ul>
+
+
+        </div><!-- .inner end -->
+
+    </section><!-- .item_list end -->
+
+    <section class="cont01">
+        <div class="text">
+            <h2>BEST SELLER</h2>
+            <p>꾸준히 인기있는 베스트 셀러 상품들을 소개합니다.</p>
+        </div><!-- .text end -->
+        <div class="swiper yourSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <figure>
+                        <img src="img/best_item1.png" alt="">
+                    </figure>
+                    <div>
+                        <h4>빙그레 바나나맛우유 미니 24팩 + 키링1개</h4>
+                        <p>대한민국을 대표하는 No.1 가공우유</p>
+                        <span><strong>27%</strong></span>
+                        <s>
+                            27,400원
+                        </s>
+                        <strong>20,000원</strong>
+                    </div>
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <figure>
+                        <img src="img/best_item2.png" alt="">
+                    </figure>
+                    <div>
+                        <h4>빙그레 따옴 유기농 주스 사과 청포도 당근<br>
+                            레드비트 120ml 24팩</h4>
+                        <p>100% 프리미엄 냉장주스 따옴</p>
+                        <span>
+                            <strong>29%</strong>
+                        </span>
+                        <s>26,400원</s>
+                        <strong>18,500원</strong>
+                    </div>
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <figure>
+                        <img src="img/best_item3.png" alt="">
+                    </figure>
+                    <div>
+                        <h4>빙그레 아카페라 올데이 커피 아메리카노<br> 1L
+                            12개입</h4>
+                        <p>대한민국을 대표하는 No.1 가공우유</p>
+                        <span><strong>27%</strong></span>
+                        <s>
+                            26,900원
+                        </s>
+                        <strong>21,000원</strong>
+                    </div>
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <figure>
+                        <img src="img/best_item7.png" alt="">
+                    </figure>
+                    <div>
+                        <h4>빙그레 더 엑설런트 오리지널 4박스</h4>
+                        <p>국내산 원유와 14% 유지방을 함유한 고급 아이스크림</p>
+                        <span><strong>9%</strong></span>
+                        <s>
+                            25,900원
+                        </s>
+                        <strong>23,500원</strong>
+                    </div>
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <figure>
+                        <img src="img/best_item4.png" alt="">
+                    </figure>
+                    <div>
+                        <h4>빙그레 아카페라 심플리 디카페인 아메리카노
+                            400ml 20개입</h4>
+                        <p>국내 최초 무라벨 커피</p>
+                        <span><strong>8%</strong></span>
+                        <s>
+                            22,900원
+                        </s>
+                        <strong>20,900원</strong>
+                    </div>
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <figure>
+                        <img src="img/best_item5.png" alt="">
+                    </figure>
+                    <div>
+                        <h4>빙그레 바나나맛우유 쿨러백 보냉백</h4>
+                        <p>#나들이 #소풍 #캠핑</p>
+                        <span><strong>27%</strong></span>
+                        <s>
+                            27,400원
+                        </s>
+                        <strong>20,000원</strong>
+                    </div>
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <figure>
+                        <img src="img/best_item6.png" alt="">
+                    </figure>
+                    <div>
+                        <h4>빙그레 더단백 프로틴음료 단백질 드링크 250ml 초코맛 18팩 + 커피맛 18팩</h4>
+                        <p>나를 채우는 완전 단백질, 더:단백</p>
+                        <span><strong>38%</strong></span>
+                        <s>
+                            91,800원
+                        </s>
+                        <strong>56,500원</strong>
+                    </div>
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <figure>
+                        <img src="img/best_item8.jpg" alt="">
+                    </figure>
+                    <div>
+                        <h4>빙그레 딸기맛우유 단지 모양 키링 3개</h4>
+                        <p>핸드폰, 가방 등 다양한 곳에 걸어 포인트를 주세요!</p>
+                        <span><strong>22%</strong></span>
+                        <s>
+                            23,500원
+                        </s>
+                        <strong>10,500원</strong>
+                    </div>
+                </div><!-- .swiper-slide end -->
+            </div>
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </section><!-- .cont01 end -->
+
+    <section class="video">
+        <video controls autoplay muted loop>
+            <source src="img/y2mate.is - 김아영__빙그레_신제품_개발하다__식물성바유_개발후기_전격공개-U-RRVM6RWeY-1080pp-1692251432.mp4"
+                type="video/mp4">
+        </video>
+    </section><!-- .video end -->
+
+    <section class="brand_shop">
+        <div class="text">
+            <h2>BRAND SHOP</h2>
+            <p>빙그레의 다양한 브랜드를 만나보세요!</p>
+        </div><!-- .text end -->
+
+        <div class="swiper ourSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="img/m_sec02_logo01.png" alt="">
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <img src="img/m_sec02_logo02.png" alt="">
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <img src="img/m_sec02_logo03.png" alt="">
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <img src="img/m_sec02_logo04.png" alt="">
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <img src="img/m_sec02_logo05.png" alt="">
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <img src="img/m_sec02_logo06.png" alt="">
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <img src="img/m_sec02_logo07.png" alt="">
+                </div><!-- .swiper-slide end -->
+            </div><!-- .swiper-wrapper end -->
+            <div class="swiper-pagination"></div>
+        </div><!-- .ourSwiper end -->
+    </section><!-- .brand_shop end -->
+
+    <section class="event">
+        <div class="banner banner_left">
+            <div>
+                <p>빙그레가 챙겨줄게요!</p>
+                <h3>원하는 날 받아볼 수 있는<br>
+                    정기배송</h3>
+            </div>
+            <strong>MORE VIEW</strong>
+            <figure>
+                <img src="img/delivery-bg.png" alt="">
+            </figure>
+        </div><!-- .banner_left end -->
+
+        <div class="swiper hisSwiper banner_center">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="img/Event6.png" alt="">
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <img src="img/Event7.png" alt="">
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <img src="img/Event1.png" alt="">
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <img src="img/Event2.png" alt="">
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <img src="img/Event3.png" alt="">
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <img src="img/Event4.png" alt="">
+                </div><!-- .swiper-slide end -->
+                <div class="swiper-slide">
+                    <img src="img/Event5.png" alt="">
+                </div><!-- .swiper-slide end -->
+            </div><!-- .swiper-wrapper end -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div><!-- .hisSwiper end -->
+
+        <div class="banner banner_right">
+            <div>
+                <p>간편하게 선물해보세요!</p>
+                <h3>특별한 사람에게 특별한<br>
+                    선물하기</h3>
+            </div>
+            <strong>MORE VIEW</strong>
+            <figure>
+                <img src="img/present-bg.png" alt="">
+            </figure>
+        </div><!-- .banner_right end -->
+    </section><!-- .event end -->
+
+    <section class="bnn">
+        <div>
+            <h1>Binggrae with you</h1>
+            <p>빙그레가 당신의 라이프를 책임질게요<br>
+                매일매일, 날마다 더욱 맛있게 건강해지세요!</p>
+            <span><a href="#">VIEW MORE</a></span>
+        </div>
+    </section><!-- .bnn end -->
+
+    <footer>
+        <div class="footer_left">
+            <h4>Company Info</h4>
+            <div>
+                <span>(주)빙그레</span>
+                <span>대표 : 전창원</span>
+                <span>사업자 등록번호 : 1328100631</span>
+                <br>
+                <span>통신판매업번호 제 2018-다산-0172</span>
+                <br>
+                <span>주소 : 경기도 남양주시 다산순환로 45 ((주)빙그레) (우 : 12253)</span>
+                <br>
+                <span>이메일 : yeonny1591@naver.com</span>
+            </div>
+            <span>Copyright © 케이디자인. All rights reserved. </span>
+        </div><!-- .footer_left end -->
+
+        <div class="footer_right">
+            <div class="footerright_left">
+                <h3>Coustomer Service</h3>
+                <h1>080-022-0056</h1>
+                <p>상담시간 09:00~17:30<br>
+                    월~금(공휴일 제외)</p>
+            </div><!-- .footerright_left end -->
+
+            <div class="footerright_right">
+                <div class="list">
+                    <span>회사소개</span>
+                    <span>이용약관</span>
+                    <span>개인정보처리방침</span>
+                    <span>이용안내</span>
+                </div><!-- .list end -->
+                <div class="sns">
+                    <a href="#"><img src="img/ic_sns_facebook.svg" alt=""></a>
+                    <a href="#"><img src="img/ic_sns_insta.svg" alt=""></a>
+                    <a href="#"><img src="img/ic_sns_kakao.svg" alt=""></a>
+                </div><!-- .sns end -->
+            </div><!-- .footerright_right end -->
+        </div><!-- .footer_right end -->
+    </footer>
+    <div class="top">
+        <figure>
+            <img src="img/Untitled-2 copy.png" alt="">
+        </figure>
+        <div>
+            <img src="img/fix_arrow.png" alt="">
+        </div>
+    </div><!-- .top end -->
+</body>
+
+</html>
